@@ -1,0 +1,3 @@
+Name - Конспекты
+Data - 25.02.23 - 
+Tech - html, css, bootstrap, fontawesome
