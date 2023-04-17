@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Конспекты</title>
+  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+
+  <!--========================
+      Шапка с навигацией 
+  =========================-->
+  <nav class="navbar navbar-expand-lg sticky-top bg-primary" data-bs-theme="dark">
+    <div class="container-fluid">
+
+      <a class="navbar-brand" id="nav_brand" href="#">
+        Конспекты <i class="fa fa-book" aria-hidden="true"></i>
+      </a>
+      <button class="navbar-toggler bg-warning" type="button" data-bs-toggle="collapse" data-bs-target="#menu_content" aria-controls="menu_content" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="menu_content">
+        <ul class="navbar-nav me-auto ms-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown"> 
+            <a class="nav-link active dropdown-toggle" href="#" aria-current="page" role="button" data-bs-toggle="dropdown" aria-expanded="false">SQL (SQLite3)</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="sql_info.html">Общая информация о БД</a></li>
+              <li><a class="dropdown-item" href="#">SQLite3</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search">
+          <button class="btn btn-outline-warning" type="submit">Поиск</button>
+        </form>
+      </div>
+
+    </div>
+  </nav>
+
+  <!--========================
+  Уникальная часть sql_sqlite3.html 
+  =========================-->
+
+  <h1 class="text-center mt-5 mb-5">SQLite3</h1>
+
+  <div class="container">
+    <p><a href="https://sqlitebrowser.org/dl/" target="_blank">https://sqlitebrowser.org/dl/</a>   инструмент-браузер для SQLite(мб еще для чегото)</p>
+    <p>SQLite — это библиотека на языке C, которая реализует небольшой, автономный, полнофункциональный механизм базы данных SQL.</p>
+    <p>
+      Скачивание и установка:<br> 
+      <a href="https://sqlite.org/index.html" target="_blank">https://sqlite.org/index.html</a>  ->  Download  ->  Precompiled Binaries for Windows  ->  <a href="https://www.youtube.com/watch?v=ZSOyqH3loss" target="_blank">https://www.youtube.com/watch?v=ZSOyqH3loss</a> и еще <a href="https://lumpics.ru/how-install-sqlite-on-windows-10/" target="_blank">https://lumpics.ru/how-install-sqlite-on-windows-10/</a>
+    </p>
+    <p><code>gem install sqlite3</code>   -  библиотека для Руби(установил успешно)</p>
+    <p>
+      <code>sqlite3 --version</code>   -  проверить версию<br>
+      <code>sqlite3</code>             -  войти в программу(в оболочку/shell программы) (выход <mark>Ctrl+C</mark> или прописать <mark>.exit</mark>)
+    </p>
+  </div>
+
+  <div class="container-fluid mt-5">
+    <div class="row">
+
+      <div class="col-lg-6 card">
+        <div class="card-header">1. Создание базы данных в sqlitebrowser:</div>
+        <div class="card-body">
+          <p class="card-text">
+            новая база данных -> выбираем директорию имя фаила и расширение -> фаил базы данной создан, в появившемся окне создаем таблицу добавляя имя таблицы и столбцы с параметрами, внизу создание отобразится в синтаксисе кодом нашей таблицы <code>CREATE TABLE "Cars" ("Id" INTEGER PRIMARY KEY AUTOINCREMENT, "Name" VARCHAR, "Price" INTEGER)</code> 
+          </p>
+          <p class="card-text">
+            Этот код это запрос к базе данных на создание таблицы с такими параметрами<br>
+            первая колонка любой таблицы это обычно id, уникальный идентификатор строки<br>
+            <mark>INTEGER</mark> - тип данных целые числа, хорошо подходит для id<br>
+            <mark>PRIMARY KEY</mark>  - значение всегда должно быть у столбца id<br>
+            <mark>AUTOINCREMENT</mark> - значение этого столбца будет автоматически увеличиваться про создании новых строк<br>
+            <mark>VARCHAR</mark> - тип данных подразумевает что будет небольшой текст, с заданным числом символов например VARCHAR(50). Но в sqlite VARCHAR==TEXT потому лучше использовать TEXT. по умолчанию VARCHAR/TEXT поддерживают юникод(другие алфавиты) в других базах это отдельные типы NVARCHAR и NTEXT<br>
+          </p>
+          <p class="card-text">
+            теперь наша таблица создана в этой базе данных и в основном окне в списке таблиц появилась наша таблица во вкладки SQL основного окна можно делать запросы(наполнять или выводить чтото из таблицы)<br>
+            таблицу можно посмотреть во вкладке "Данные"
+          </p>
+          <p class="card-text">Название столбца лучше не делать datetime, тк оно часто зарезервировано. Лучше использовать datestamp/date_stamp/DateStamp</p>
+        </div>
+      </div>
+      
+      <div class="col-lg-6 card">
+        <div class="card-header">2. Работа с базой данных через терминал(ТРУЕ способ)</div>
+        <div class="card-body">
+          <p class="card-text"><code>sqlite3</code> название_базы_данных.расширение                     - войти(в соответсвующей директории) в конкретную базу данных(в ее рабочую текстовую консольную оболочку) например testDB.sqlite</p>
+          <p class="card-text text-center">Команды внутри базы данных:</p>
+          <p class="card-text">
+            <code>CREATE TABLE "Some" ("Id" INTEGER PRIMARY KEY AUTOINCREMENT, "Name" VARCHAR, "Price" INTEGER);</code>  - запрс создания новой таблицы в данной базе данных (среда позволяет писать запросы в несколько строк соотв в конце запроса(именно запроса не команды) точка с запятой, иначе на другую строку переходит ввод запроса, можно поставить и на новой строке)
+          </p>
+          <p class="card-text"><code>.tables</code>  - вывести список таблиц которые существуют в данной базе данных</p>
+          <p class="card-text"><code>SELECT * FROM Cars;</code>  - пример запроса SELECT, получаем вывод таблицы или ее элементов</p>
+          <p class="card-text"><code>.mode column</code>  - изменяет визуальный стиль вывода таблицы на такой чтоб колонки были ровными</p>
+          <p class="card-text"><code>.headers on</code>  - Включить заголовки(похоже включена автоматически и так в .mode column)</p>
+          <p class="card-text"><code>INSERT INTO Cars (Name, Price) VALUES ('Foo', 6743);</code>  - пример запроса INSERT, добавим новую строку в таблицу</p>
+          <p class="card-text"><code>.exit</code>  - выйти из базы данных</p>
+          <p class="card-text"></p>
+          <p class="card-text"></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  
+
+   
+  
+  <div class="end_space"></div>
+
+  <script type="text/javascript" src="js/bootstrap.bundle.js"></script>
+</body>
+</html>
