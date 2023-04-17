@@ -6,9 +6,9 @@
 
 body {
   background-color: #f2f2f2;
-  color: #555;
-  /* margin-top: 5rem; */
 }
+
+.end_space { height: 30vmin; } /* блок конца страницы */
 
 
 

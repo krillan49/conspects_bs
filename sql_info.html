@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Конспекты</title>
+  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+
+  <!--========================
+      Шапка с навигацией 
+  =========================-->
+  <nav class="navbar navbar-expand-lg sticky-top bg-primary" data-bs-theme="dark">
+    <div class="container-fluid">
+
+      <a class="navbar-brand" id="nav_brand" href="index.html">
+        Конспекты <i class="fa fa-book" aria-hidden="true"></i>
+      </a>
+      <button class="navbar-toggler bg-warning" type="button" data-bs-toggle="collapse" data-bs-target="#menu_content" aria-controls="menu_content" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="menu_content">
+        <ul class="navbar-nav me-auto ms-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown"> 
+            <a class="nav-link active dropdown-toggle" href="#" aria-current="page" role="button" data-bs-toggle="dropdown" aria-expanded="false">SQL (Общая информация о БД)</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="sql_info.html">Общая информация о БД</a></li>
+              <li><a class="dropdown-item" href="git.html">Git</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search">
+          <button class="btn btn-outline-warning" type="submit">Поиск</button>
+        </form>
+      </div>
+
+    </div>
+  </nav>
+
+  <!--========================
+  Уникальная часть sql_info.html 
+  =========================-->
+
+  <h1 class="text-center mt-5 mb-5">Общая информация о БД</h1>
+  
+  <div class="container">
+    <a href="https://sql-academy.org/ru/guide">https://sql-academy.org/ru/guide</a>  - курс и задачки по SQL<br>
+    <a href="https://sql-academy.org/ru/handbook/LENGTH">https://sql-academy.org/ru/handbook/LENGTH</a> - справочник по функциям 
+  </div>
+
+  <div class="container mt-3">
+    <mark>Базы данных(БД)</mark> - это набор фаилов, хранилище данных, хранящиеся в структурированном виде. Системы управленя базами данных(СУБД) - совокупность языковых и программных средств, которая осуществляет доступ к данным, позволяет их создавать, менять и удалять, обеспечивает безопасность и т.д.<br>
+    <mark>СУБД</mark> — это система, позволяющая создавать базы данных и манипулировать сведениями из них. Когда мы вводим запрос(например SQL) то он идет в СУБД, она его обрабатывает, отсылает БД, берет оттуда данные и выдает нам.
+  </div>
+
+
+  <div class="container-fluid mt-5">
+    <div class="row">
+      <div class="col-12"><h5 class="text-center">Типы СУБД</h5></div>
+
+      <div class="col-lg-4 card">
+        <div class="card-header">1. Key-value базы данных(Redis, Memcached, Etcd):</div>
+        <div class="card-body">
+          <p class="card-text">Они хранят данные как совокупность пар «ключ-значение», в которых ключ это уникальный id Ключи и значения могут представлять собой что угодно: от простых до сложных составных объектов.</p>
+          <p class="card-text">Преимущества: Скорость работы; Простота модели хранения данных; Значения могут быть любыми, включая JSON;</p>
+          <p class="card-text">Недостатки: Плохо масштабируются в сложных моделях данных; Неэффективность при работе с группой записей(на входе не имеем инфы кроме ключа); Нет языка запросов(логика зпросов будет в основном коде)</p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 card">
+        <div class="card-header">2. Документоориентированные базы данных(MongoDB, Couchbase, Firebase):</div>
+        <div class="card-body">
+          <p class="card-text">Хранение и запрос данных в виде документов, подобном JSON. Документ это набор атрибуто
+          (ключ и значение). Значения могут быть любыми типами данных(в том числе и ссылки на другие
+          документы)</p>
+          <p class="card-text">Позволяет добавлять новую информацию в некоторые записи, не требуя при этом, чтобы все остальные записи в базе данных имели одинаковую структуру</p>
+          <p class="card-text">Документы в базе данных адресуются с помощью уникального ключа, обычно это строка, которая генерируется автоматически.</p>
+          <p class="card-text">Помимо простого поиска документов по ключу, как в key-value базах данных, они имеют и свой язык запросов. Функционал и синтаксис которого отличается от одной реализации к другой.</p>
+          <p class="card-text"><code>> db.users.find({"name": "Daniel"}).count()</code>  (пример запроса в MongoDB)</p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 card">
+        <div class="card-header">3. Реляционные базы данных:</div>
+        <div class="card-body">
+          <p class="card-text">Информация хранится в связанных друг с другом таблицах. Таблицы
+          состоят из строк/записей и столбцов/атрибутов. Каждый столбец имеет определённый тип данных(пр: <code>VARCHAR INTEGER DATETIME</code>)</p>
+          <p class="card-text">а. Ключевое поле(первичный ключ)(обязателен, только один но может состоять из нескольких полей) – это поле, значение которого однозначно определяет запись в таблице.Например в таблице FamilyMembers, ключевым полем является member_id. С помощью данного правила СУБД не позволит нам создать новую запись, где поле member_id будет неуникальным.</p>
+          <p class="card-text">б. Внешний ключ(необязателен, может быть несколько) – это поле (или набор полей) в одной таблице, которое ссылается на первичный ключ в другой таблице. Таблица с внешним ключом называется дочерней таблицей, а таблица с первичным ключом называется ссылочной или родительской таблицей(одна таблица бывает и той и другой). Правило внешнего ключа гарантирует, что при создании записей в дочерней таблице, значение поля, являющегося внешним ключом, есть в родительской таблице. Если внешний ключ не определён, то СУБД не будет проверять, что при создании записи в таблице Purchase в полях buyer_id и good_id лежат значения, которые определены в соответствующих таблицах в поле id.</p>
+          <p class="card-text"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-5">
+    <p>Для работы с базой данных нам нужно знать язык этой базы данных. Базы данных бывают SQL либо NOSQL(not only).</p>
+    <p>SQL - Structured Query Language(язык структурированных запросов) - язык запросов к СУБД. Он формулирует запрос к БД и на основе запроса производит различные манипуляции внутри БД</p>
+    <p>SQL используется во множестве СУБД. Среди таковых можно выделить: MySQL, SQLite, PostgreSQL, Oracle, Microsoft SQL Server и многие другие.</p>
+    <p>SQL выполняет роль посредника, между базами данных и проектом. Например есть программа на PHP и есть база данных, например MySQL. SQL соединяет обе технологии между собой. В нем вы записываете команду. После выполнения команды вы сможете получить данные из БД, записать данные или проделать другие манипуляции.</p>
+    <p>Многие СУБД вносят свои изменения в язык SQL. Такие языки называют диалектами или расширениями языка(T-SQL – диалект Microsoft SQL Server, PL/SQL – диалект Oracle Database, PL/pgSQL – диалект PostgreSQL).</p>
+  </div>
+
+  <div class="end_space"></div>
+
+
+  <script type="text/javascript" src="js/bootstrap.bundle.js"></script>
+</body>
+</html>
